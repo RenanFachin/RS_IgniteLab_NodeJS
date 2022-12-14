@@ -1,12 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
+import { MailService } from './mail/mail.service';
 
-@Controller()
+/* 
+    /app/hello 
+*/
+@Controller('app') // app será o endereço da rota
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly mailService: MailService) {}
 
-  @Get()
+  @Get('hello') // hello será o endereço da rota
   getHello(): string {
-    return this.appService.getHello();
+    return this.mailService.sendEmail();
   }
 }
