@@ -1,6 +1,8 @@
+import { Content } from "./notification-content";
+
 export interface NotificationProps {
     recipientId: string;
-    content: string;
+    content: Content;
     category: string;
     readAt?: Date | null;
     // ReadAt é opcional, ou seja ou é DATE ou UNDEFINED. Por isso definimos que é DATE, UNDEFINED e NULL
@@ -33,12 +35,12 @@ export class Notification {
         return this.props.category
     } 
 
-    public set content(content: string) {
+    public set content(content: Content) {
 
         this.props.content = content
     }
 
-    public get content(): string {
+    public get content(): Content {
         return this.props.content
     }  
     
