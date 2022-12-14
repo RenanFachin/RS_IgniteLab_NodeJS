@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
 
 import { randomUUID } from 'node:crypto'
+import { CreateNotificationBody } from './create-notification-body';
 
 
 @Controller('notifications') 
@@ -14,7 +15,7 @@ export class AppController {
   }
 
   @Post()
-  async create(@Body() body: any) {
+  async create(@Body() body: CreateNotificationBody) {
     // @Body é o decorator
     // body é uma variável que vai armazenar os dados recebidos pelo body da requisição
     const { recipientId, content, category } = body
