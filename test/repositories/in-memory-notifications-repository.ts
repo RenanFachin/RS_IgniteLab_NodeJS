@@ -4,7 +4,6 @@ import { Notification } from '../../src/application/entities/notification'
 // Simulando um banco de dados in memory
 
 export class InMemoryNotificationsRepository implements NotificationsRepository {
-
     public notifications: Notification[] = []
 
     async findById(notificationId: string): Promise<Notification | null> {
@@ -20,6 +19,10 @@ export class InMemoryNotificationsRepository implements NotificationsRepository 
 
     async countManyByRecipientId(recipientId: string): Promise<number> {
         return this.notifications.filter(notification => notification.recipientId === recipientId).length
+    }
+
+    async findManyByRecipientId(recipientId: string): Promise<Notification[]> {
+        return this.notifications.filter(notification => notification.recipientId === recipientId)
     }
 
     async create(notification: Notification) {
