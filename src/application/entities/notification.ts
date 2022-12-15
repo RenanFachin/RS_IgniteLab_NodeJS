@@ -17,8 +17,8 @@ export class Notification {
     private props: NotificationProps;
 
     // Dizendo para o constructor que o createAt pode ser opcional
-    constructor(props: Replace<NotificationProps, { createdAt?: Date }>){
-        this._id = randomUUID()
+    constructor(props: Replace<NotificationProps, { createdAt?: Date }>, id?: string){
+        this._id = id ?? randomUUID()
         this.props = {
             ...props,
             createdAt: props.createdAt ?? new Date()
@@ -61,9 +61,12 @@ export class Notification {
         return this.props.content
     }  
     
-    public set readAt(readAt: Date | null | undefined) {
+    public read() {
+        this.props.readAt = new Date()
+    }
 
-        this.props.readAt = readAt
+    public unread() {
+        this.props.readAt = null
     }
 
     public get readAt(): Date | null | undefined {
